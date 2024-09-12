@@ -42,9 +42,18 @@ class Store {
    * Добавление новой записи
    */
   addItem() {
+
+    let element = this.state.list[this.state.list.length - 1]; // последний элемент 
+    let unic = element.code+1; // уникальный код всегда больше на 1 кода последнего элемента списка
+  
     this.setState({
       ...this.state,
-      list: [...this.state.list, { code: this.state.list.length + 1, title: 'Новая запись' }],
+      list: [...this.state.list, { 
+        // code: Date.now().toString(36), // генерация уникального кода с преобразованием в строку временной метки
+        code: unic, 
+        title: 'Новая запись',
+        quantity: 0 
+      }],
     });
   }
 
@@ -68,7 +77,15 @@ class Store {
       ...this.state,
       list: this.state.list.map(item => {
         if (item.code === code) {
-          item.selected = !item.selected;
+            item.selected = !item.selected;
+
+            // счетчик количества выделений
+            if(item.selected == true) { 
+              item.quantity++; 
+            }
+        }
+        else{ // сбрасываем выделение у элемента который мог быть выделен раньше
+          item.selected = false; 
         }
         return item;
       }),
