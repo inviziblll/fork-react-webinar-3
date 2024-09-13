@@ -10,6 +10,21 @@ import './styles.css';
 function App({ store }) {
   const list = store.getState().list;
 
+  function clicked(item) {
+      let str = 'Выделяли ' + item.quantity;
+      let quantity = item.quantity.toString();
+      if (quantity > 20){
+        quantity = quantity[quantity.length - 1];
+      }
+  
+      if (quantity == 2 || quantity == 3 || quantity == 4){
+        str = str + ' раза'
+      }else{
+        str = str + ' раз'
+      }
+    return str;
+  }
+
   return (
     <div className="App">
       <div className="App-head">
@@ -21,6 +36,7 @@ function App({ store }) {
       <div className="App-center">
         <div className="List">
           {list.map(item => (
+            
             <div key={item.code} className="List-item">
               <div
                 className={'Item' + (item.selected ? ' Item_selected' : '')}
@@ -28,7 +44,8 @@ function App({ store }) {
               >
                 <div className="Item-code">{item.code}</div>
                 <div className="Item-title">
-                  {item.title} {item.quantity ? 'Выделяли '+item.quantity+' раз' : '' }
+                  {item.title} {item.quantity ? clicked(item) : '' }
+
                 </div>
                 <div className="Item-actions">
                   <button onClick={() => store.deleteItem(item.code)}>Удалить</button>
