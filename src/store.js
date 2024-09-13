@@ -5,6 +5,7 @@ class Store {
   constructor(initState = {}) {
     this.state = initState;
     this.listeners = []; // Слушатели изменений состояния
+    this.unic = this.state.list[this.state.list.length - 1].code; // код последнего элемента
   }
 
   /**
@@ -42,18 +43,20 @@ class Store {
    * Добавление новой записи
    */
   addItem() {
+    
+    // let element = this.state.list[this.state.list.length - 1]; // последний элемент 
+    // let unic = element.code + 1; // уникальный код всегда больше на 1 кода последнего элемента списка
 
-    let element = this.state.list[this.state.list.length - 1]; // последний элемент 
-    let unic = element.code+1; // уникальный код всегда больше на 1 кода последнего элемента списка
-  
+    this.unic = this.unic + 1; // уникальный код всегда больше на 1 кода последнего элемента списка
+
     this.setState({
-      ...this.state,
-      list: [...this.state.list, { 
-        // code: Date.now().toString(36), // генерация уникального кода с преобразованием в строку временной метки
-        code: unic, 
-        title: 'Новая запись',
-        quantity: 0 
-      }],
+        ...this.state,
+        list: [...this.state.list, { 
+          // code: Date.now().toString(36), // генерация уникального кода с преобразованием в строку временной метки
+          code: this.unic, 
+          title: 'Новая запись',
+          quantity: 0 
+        }],
     });
   }
 
@@ -62,6 +65,7 @@ class Store {
    * @param code
    */
   deleteItem(code) {
+
     this.setState({
       ...this.state,
       list: this.state.list.filter(item => item.code !== code),
