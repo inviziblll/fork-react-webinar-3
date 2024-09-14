@@ -30,7 +30,7 @@ export function createElement(name, props = {}, ...children) {
 
 export function clicked(quantity){  
   let str = ' | Выделяли ' + quantity; 
-  quantity = Math.abs(quantity) % 100;
+  quantity = quantity % 100;
   
   if(quantity > 10 && quantity < 20){ 
     str = str+' раз';
