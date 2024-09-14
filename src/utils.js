@@ -26,3 +26,22 @@ export function createElement(name, props = {}, ...children) {
 
   return element;
 }
+
+
+export function clicked(quantity){  
+  let str = ' | Выделяли ' + quantity; 
+  quantity = Math.abs(quantity) % 100;
+  
+  if(quantity > 10 && quantity < 20){ 
+    str = str+' раз';
+  } 
+  else{
+    quantity = quantity % 10;
+    if(quantity > 1 && quantity < 5) {
+       str = str+' раза';
+    }else{
+      str = str+' раз';
+    }    
+  }
+  return str;
+}

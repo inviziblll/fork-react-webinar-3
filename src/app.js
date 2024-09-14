@@ -1,5 +1,5 @@
 import React from 'react';
-import { createElement } from './utils.js';
+import { createElement, clicked } from './utils.js';
 import './styles.css';
 
 /**
@@ -10,20 +10,7 @@ import './styles.css';
 function App({ store }) {
   const list = store.getState().list;
 
-  function clicked(item) {
-      let str = 'Выделяли ' + item.quantity;
-      let quantity = item.quantity.toString();
-      if (quantity > 20){
-        quantity = quantity[quantity.length - 1];
-      }
-  
-      if (quantity == 2 || quantity == 3 || quantity == 4){
-        str = str + ' раза'
-      }else{
-        str = str + ' раз'
-      }
-    return str;
-  }
+ 
 
   return (
     <div className="App">
@@ -39,12 +26,12 @@ function App({ store }) {
             
             <div key={item.code} className="List-item">
               <div
-                className={'Item' + (item.selected ? ' Item_selected' : '')}
+                className={'Item' + (item.selected ? ' Item_selected' : '')} 
                 onClick={() => store.selectItem(item.code)}
               >
                 <div className="Item-code">{item.code}</div>
                 <div className="Item-title">
-                  {item.title} {item.quantity ? clicked(item) : '' }
+                  {item.title} {item.quantity ? clicked(item.quantity) : '' }
 
                 </div>
                 <div className="Item-actions">
