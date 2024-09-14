@@ -5,6 +5,15 @@ class Store {
   constructor(initState = {}) {
     this.state = initState;
     this.listeners = []; // Слушатели изменений состояния
+    this.unique = this.maxCode(); // код элемента с максимальным значением
+  }
+
+  maxCode(){
+      let listCodes = this.state.list.map(item => { // получаем списолк всех кодов у элементов
+        return item.code;
+      });
+      let maxCode = Math.max(0, ...listCodes); // код с максимальным значением
+      return maxCode;
   }
 
   /**
@@ -42,15 +51,12 @@ class Store {
    * Добавление новой записи
    */
   addItem() {
-    let listCodes = this.state.list.map(item => { // получаем списолк всех кодов у элементов
-      return item.code;
-    });
-    let unique = Math.max(0, ...listCodes) + 1; // уникальный код больше на 1 кода элемента с максимальным значением
-
+    this.unique = this.unique + 1; //  уникальный код больше на 1 кода элемента с максимальным значением
     this.setState({
         ...this.state,
         list: [...this.state.list, { 
-          code: unique, 
+          // code: unique, 
+          code: this.unique, 
           title: 'Новая запись',
           quantity: 0 
         }],
