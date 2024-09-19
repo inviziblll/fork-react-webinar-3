@@ -10,7 +10,6 @@
     font-weight: bold;
 }
 
-
 .Cart {
     position: fixed;
     top: 0;
@@ -35,7 +34,6 @@
     overflow: hidden;
 }
 
-
 .Cart-header {
     display: flex;
     background: #F5F5F5;
@@ -53,7 +51,6 @@
 }
 
 .Cart-total-price {
-   
     display: flex;
     justify-content: end;
     font-weight: 700;
