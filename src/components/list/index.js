@@ -24,9 +24,4 @@ List.propTypes = {
   action: PropTypes.func,
 };
 
-// List.defaultProps = {
-//   onDeleteItem: () => {},
-//   onSelectItem: () => {},
-// };
-
 export default React.memo(List);

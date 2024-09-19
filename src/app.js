@@ -1,17 +1,15 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import List from './components/list';
-import Controls from './components/controls';
 import Head from './components/head';
 import PageLayout from './components/page-layout'; 
+import Cart from './components/cart';
 
-import Cart from './components/cart'; 
 /**
  * Приложение
  * @param store {Store} Хранилище состояния приложения
  * @returns {React.ReactElement}
  */
 function App({ store }) {
-  // const [state, setState] = useState(store.getState());
 
   const list = store.getState().list;
   const cart = store.getState().cart;
@@ -19,7 +17,6 @@ function App({ store }) {
   const callbacks = {
 
     // cart
-
     onAddToCart: useCallback(
       code => {
         console.log(code);

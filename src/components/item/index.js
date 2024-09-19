@@ -9,7 +9,6 @@ function Item(props) {
       props.action(props.item.code);
   };
 
-
   return (
     <div className="Item">
 
@@ -41,8 +40,4 @@ Item.propTypes = {
   action: PropTypes.func
 };
 
-// Item.defaultProps = {
-//   onDelete: () => {},
-//   onSelect: () => {},
-// };
 export default React.memo(Item);
