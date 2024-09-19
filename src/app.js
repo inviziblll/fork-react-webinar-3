@@ -1,46 +1,47 @@
-import React, { useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import List from './components/list';
 import Controls from './components/controls';
 import Head from './components/head';
-import PageLayout from './components/page-layout';
+import PageLayout from './components/page-layout'; 
 
+import Cart from './components/cart'; 
 /**
  * Приложение
  * @param store {Store} Хранилище состояния приложения
  * @returns {React.ReactElement}
  */
 function App({ store }) {
+  // const [state, setState] = useState(store.getState());
+
   const list = store.getState().list;
+  const cart = store.getState().cart;
 
   const callbacks = {
-    onDeleteItem: useCallback(
+
+    // cart
+
+    onAddToCart: useCallback(
       code => {
-        store.deleteItem(code);
+        console.log(code);
+        store.addProduct(code);
       },
       [store],
     ),
 
-    onSelectItem: useCallback(
+    onRemoveProduct: useCallback(
       code => {
-        store.selectItem(code);
+        store.removeProduct(code);
       },
       [store],
     ),
 
-    onAddItem: useCallback(() => {
-      store.addItem();
-    }, [store]),
   };
 
   return (
     <PageLayout>
-      <Head title="Приложение на чистом JS" />
-      <Controls onAdd={callbacks.onAddItem} />
-      <List
-        list={list}
-        onDeleteItem={callbacks.onDeleteItem}
-        onSelectItem={callbacks.onSelectItem}
-      />
+      <Head title="Магазин" />
+      <Cart cart={cart} onRemoveProduct={callbacks.onRemoveProduct}/>
+      <List list={list} action={callbacks.onAddToCart} buttonName="Добавить"/>
     </PageLayout>
   );
 }

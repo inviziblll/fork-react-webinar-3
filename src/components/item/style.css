@@ -13,13 +13,28 @@
   padding: 20px 10px 20px 20px;
 }
 
-.Item-title {
+
+.Item-content {
   width: 100%;
   padding: 20px 10px;
+  display: flex;
+  justify-content: space-between;
 }
+
+
+/*
+.Item-title,
+.Item-price {
+  text-align: end;
+}
+*/
 
 .Item-actions {
   display: flex;
   justify-content: flex-end;
   padding: 20px 20px 20px 10px;
+}
+
+.Item-quantity {
+    margin: 0 0 0 1em;
 }
