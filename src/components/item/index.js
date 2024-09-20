@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { plural } from '../../utils';
+import { plural, priceFormat } from '../../utils';
 import './style.css';
 
 function Item(props) {
@@ -17,7 +17,7 @@ function Item(props) {
       <div className="Item-content">
           <div className="Item-title">{props.item.title}</div>
           <div className="Item-price">
-                {props.item.price} ₽
+                {priceFormat(props.item.price)} ₽
                 {props.item.quantity ? <span className="Item-quantity">{props.item.quantity} шт</span> : ''}
           </div>
       </div>

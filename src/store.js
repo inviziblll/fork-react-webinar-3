@@ -46,6 +46,7 @@ class Store {
         ...this.state,
         cart: this.state.cart.filter(item => item.code !== code),
       });
+      this.countCartPriceByProducts(this.state.cart);
   }
   
   addProduct(code) {
@@ -65,6 +66,12 @@ class Store {
         // если такого товара нет в корзине добавляем его в нее
         this.setState({...this.state, cart: [...this.state.cart, { ...product, quantity: 1}]});
       }
+      this.countCartPriceByProducts(this.state.cart);
+  }
+
+  countCartPriceByProducts(cart){
+      this.setState({...this.state, сartPoducts: cart.length});  
+      this.setState({...this.state, сartPrice: cart.reduce((sum, item) => sum + item.price, 0)});  
   }
   
 }

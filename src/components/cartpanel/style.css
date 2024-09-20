@@ -1,0 +1,10 @@
+.Cart-Panel {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.Cart-items {
+    margin: 0 1.5em 0;
+    font-weight: bold;
+}
