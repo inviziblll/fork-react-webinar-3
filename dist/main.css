@@ -71,19 +71,7 @@ body {
   box-shadow: 0 0 15px 5px #0000003b;
 }
 
-.Cart-Panel {
-    display: flex;
-    justify-content: flex-end;
-    padding: 20px;
-}
-
-
-.Cart-items {
-    margin: 0 1.5em 0;
-    font-weight: bold;
-}
-
-.Cart {
+.Modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -96,7 +84,7 @@ body {
     z-index: 1;
 }
 
-.Cart-content {
+.Modal-content {
     max-width: 960px;
     width: 100%;
     background: #fff;
@@ -107,7 +95,7 @@ body {
     overflow: hidden;
 }
 
-.Cart-header {
+.Modal-header {
     display: flex;
     background: #F5F5F5;
     padding: 20px 0px 20px 20px;
@@ -116,11 +104,62 @@ body {
     border-radius: 10px 10px 0px 0px;
 }
 
-.Cart-header h2 {
+.Modal-header h2 {
       font-size: 32px;
       font-weight: 700;
       line-height: 35px;
       margin: 0;
+}
+
+.Controls {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.Cart-Panel {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.Cart-items {
+    margin: 0 1.5em 0;
+    font-weight: bold;
+}
+
+.Cartitem {
+  display: flex;
+  justify-content: flex-start;
+  transition: background-color 1s;
+}
+
+.Cartitem-code {
+  padding: 20px 10px 20px 20px;
+}
+
+
+.Cartitem-content {
+  width: 100%;
+  padding: 20px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Cartitem-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 20px 20px 10px;
+}
+
+.Cartitem-quantity {
+    margin: 0 0 0 1em;
+}
+.Cart {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .Cart-total-price {
@@ -146,3 +185,16 @@ body {
   padding: 20px;
 }
 
+.Cart-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 0 0;
+  padding: 0;
+  width: 100%;
+}
+
+
+.Cartlist-item {
+  border-bottom: 1px dashed #ccc;
+}
