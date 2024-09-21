@@ -1,0 +1,27 @@
+.Cartitem {
+  display: flex;
+  justify-content: flex-start;
+  transition: background-color 1s;
+}
+
+.Cartitem-code {
+  padding: 20px 10px 20px 20px;
+}
+
+
+.Cartitem-content {
+  width: 100%;
+  padding: 20px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Cartitem-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 20px 20px 10px;
+}
+
+.Cartitem-quantity {
+    margin: 0 0 0 1em;
+}

@@ -1,3 +1,10 @@
+.Cart {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 .Cart-total-price {
     display: flex;
     justify-content: end;
@@ -19,4 +26,18 @@
   display: flex;
   justify-content: flex-end;
   padding: 20px;
+}
+
+.Cart-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 0 0;
+  padding: 0;
+  width: 100%;
+}
+
+
+.Cartlist-item {
+  border-bottom: 1px dashed #ccc;
 }

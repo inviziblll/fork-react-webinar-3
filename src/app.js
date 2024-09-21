@@ -25,7 +25,6 @@ function App({ store }) {
     // cart
     onAddToCart: useCallback(
       code => {
-        console.log(code);
         store.addProduct(code);
       },
       [store],
@@ -49,7 +48,6 @@ function App({ store }) {
   };
 
   const cartComponent = <Cart cart={cart} onRemoveProduct={callbacks.onRemoveProduct} />; // компонент корзина
-
 
   return (
     <PageLayout>
