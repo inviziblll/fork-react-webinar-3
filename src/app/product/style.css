@@ -1,0 +1,8 @@
+.Product {
+    display: flex;
+    flex-direction: column;
+    width: 450;
+    padding: 20px 30px;
+    margin: 0;
+    line-height: 18px;
+}

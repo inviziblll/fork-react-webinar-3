@@ -1,0 +1,31 @@
+.Pagination {
+  padding: 20px 21px;
+  text-align: end;
+}
+
+.Pagination-Page {
+  border: none;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18.4px;
+}
+
+.Pagination-Page:hover {
+  background: #E1E1E1;
+}
+
+.Active {
+  background-color: #0087E9;
+  color: white;
+}
+
+.Next {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+.Separator {
+  background-color: white;
+  color: rgba(204, 204, 204, 1);
+}

@@ -1,0 +1,33 @@
+.ProductCard {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 30px;
+    margin: 0;
+    line-height: 18px;
+    gap: 20px;
+    width: 450;
+}
+
+.ProductCard-content {
+    display: block;
+    font-size: 16px;
+}
+
+.ProductCard-button {
+    display: flex;
+    align-self: flex-start;
+    margin: 20px 0;
+}
+
+.ProductCard-param {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 18px;
+}
+
+.ProductCard-home{
+  color: #0888e5;
+  text-decoration: underline;
+  font-size: 18px;
+}
+

@@ -29,10 +29,10 @@ BasketTool.propTypes = {
   amount: PropTypes.number,
 };
 
-BasketTool.defaultProps = {
-  onOpen: () => {},
-  sum: 0,
-  amount: 0,
-};
+// BasketTool.defaultProps = {
+//   onOpen: () => {},
+//   sum: 0,
+//   amount: 0,
+// };
 
 export default memo(BasketTool);
