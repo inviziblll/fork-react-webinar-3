@@ -12,11 +12,28 @@ import './style.css';
 function Product() {
   const store = useStore();
   const { id } = useParams();
-  
+
+  const lang = store.actions.lang;
+  const langSettings = {
+      ManufacturerCountry:lang.getPhrase('ManufacturerCountry'),
+      Category:lang.getPhrase('Category'),
+      Release:lang.getPhrase('Release'),
+      Price:lang.getPhrase('Price'),
+      Add:lang.getPhrase('Add'),
+      MainPage:lang.getPhrase('MainPage'),
+      Move:lang.getPhrase('Move'),
+      CartHas:lang.getPhrase('CartHas'),
+      CartEmpty:lang.getPhrase('CartEmpty'),
+      One:lang.getPhrase('One'),
+      Few:lang.getPhrase('Few'),
+      Many:lang.getPhrase('Many'),
+  };
+    
   const select = useSelector(state => ({
     amount: state.basket.amount,
     sum: state.basket.sum,
     product: state.product.item,
+    lang: state.lang.curLang,    
   }));
 
   const cn = bem('Product');
@@ -26,6 +43,11 @@ function Product() {
     addToBasket: useCallback(_id => store.actions.basket.addToBasket(_id), [store]),
     // Открытие модалки корзины
     openModalBasket: useCallback(() => store.actions.modals.open('basket'), [store]),
+
+    onLangChange: useCallback((lang)=>{
+      store.actions.lang.setLang(lang)
+    }, [store]),
+
   };
 
   useEffect(() => {
@@ -49,9 +71,9 @@ function Product() {
 
   return (
     <PageLayout>
-      <Head title={select.product.title} />
-      <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
-      <ProductCard product={select.product} onAdd={callbacks.addToBasket} loading={select.loading}/>
+      <Head title={select.product.title} onLangChange={callbacks.onLangChange} lang={select.lang}/>
+      <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} langSettings={langSettings}/>
+      <ProductCard product={select.product} onAdd={callbacks.addToBasket} langSettings={langSettings}/>
     </PageLayout>
   );
 }

@@ -2,10 +2,10 @@ import { memo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
 import { numberFormat } from '../../utils'; 
-import './style.css';
 import { useNavigate } from 'react-router-dom';
+import './style.css';
 
-function Item({item, onAdd, onProduct}) {
+function Item({item, onAdd, onProduct, langSettings}) {
 
   const cn = bem('Item');
   
@@ -20,7 +20,7 @@ function Item({item, onAdd, onProduct}) {
       <div className={cn('title')} onClick={callbacks.onProduct}>{item.title}</div>
       <div className={cn('actions')}>
         <div className={cn('price')}>{numberFormat(item.price)} ₽</div>
-        <button onClick={callbacks.onAdd}>Добавить</button>
+        <button onClick={callbacks.onAdd}>{langSettings.Add}</button>
       </div>
     </div>
   );

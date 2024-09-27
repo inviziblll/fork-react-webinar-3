@@ -6,14 +6,23 @@ import BasketTotal from '../../components/basket-total';
 import useStore from '../../store/use-store';
 import useSelector from '../../store/use-selector';
 
-function Basket() {
+function Basket() { 
   const store = useStore();
+  const lang = store.actions.lang; // языковые настройки берем из хранилища
+  const langSettings = {
+      Delete:lang.getPhrase('Delete'),
+      CartTitle:lang.getPhrase('CartTitle'),
+      ModalButtonClose:lang.getPhrase('ModalButtonClose'),
+      CartTotal:lang.getPhrase('CartTotal'),
+  };
 
   const select = useSelector(state => ({
     list: state.basket.list,
     amount: state.basket.amount,
     sum: state.basket.sum,
   }));
+
+
 
   const callbacks = {
     // Удаление из корзины
@@ -25,16 +34,16 @@ function Basket() {
   const renders = {
     itemBasket: useCallback(
       item => {
-        return <ItemBasket item={item} onRemove={callbacks.removeFromBasket} />;
+        return <ItemBasket item={item} onRemove={callbacks.removeFromBasket} langSettings={langSettings}/>;
       },
       [callbacks.removeFromBasket],
     ),
   };
 
   return (
-    <ModalLayout title="Корзина" onClose={callbacks.closeModal}>
+    <ModalLayout title={langSettings.CartTitle} onClose={callbacks.closeModal} langSettings={langSettings}>
       <List list={select.list} renderItem={renders.itemBasket} />
-      <BasketTotal sum={select.sum} />
+      <BasketTotal sum={select.sum} langSettings={langSettings}/>
     </ModalLayout>
   );
 }
