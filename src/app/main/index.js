@@ -17,6 +17,7 @@ function Main() {
 
   const lang = store.actions.lang; // языковые настройки берем из хранилища
   const langSettings = {
+      MainPage:lang.getPhrase('MainPage'),
       Add:lang.getPhrase('Add'),
       Move:lang.getPhrase('Move'),
       CartHas:lang.getPhrase('CartHas'),
@@ -71,7 +72,7 @@ function Main() {
   return (
     <PageLayout>
       <Head title={lang.getPhrase('ShopTitle')} onLangChange={callbacks.onLangChange} lang={select.lang}/>
-      <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} langSettings={langSettings}/> 
+      <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} langSettings={langSettings} onProduct={callbacks.onProductDetail}/> 
       <List list={select.list} renderItem={renders.item} />
       {select.pages > 0 
           ? <Pagination onPageChange={callbacks.onChangePage} activePage={select.activePage} pages={select.pages}/> 

@@ -20,23 +20,22 @@ function ProductCard({product, onAdd, langSettings}) {
 
   return (
     <div className={cn()}>
-          <p className={cn('home')} onClick={callbacks.onHome}>{langSettings.MainPage}</p>
           <div className={cn('content')}>{product.description}</div>
           
           <div className={cn('param')}>
-            {langSettings.ManufacturerCountry}: {product.madeIn.title}
+            {langSettings.ManufacturerCountry}: <strong>{product.madeIn.title}</strong>
           </div>
 
           <div className={cn('param')}>
-             {langSettings.Category}: {product.category.title}
+             {langSettings.Category}: <strong>{product.category.title}</strong>
           </div>
 
           <div className={cn('param')}>
-            {langSettings.Release}: {product.edition}
+            {langSettings.Release}: <strong>{product.edition}</strong>
           </div>
 
-          <div className={cn('param')}>
-            {langSettings.Price}: {product.price.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB' })}
+          <div className={cn('price')}>
+            {langSettings.Price}:&nbsp;&nbsp;&nbsp;{product.price.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB' })}
           </div>
 
           <button className={cn('button')} onClick={callbacks.onAddToBasket}>{langSettings.Add}</button>
@@ -44,4 +43,4 @@ function ProductCard({product, onAdd, langSettings}) {
     </div>
   );
 }
-export default memo(ProductCard);
+export default memo(ProductCard); 

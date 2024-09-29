@@ -5,9 +5,11 @@ import ModalLayout from '../../components/modal-layout';
 import BasketTotal from '../../components/basket-total';
 import useStore from '../../store/use-store';
 import useSelector from '../../store/use-selector';
+import { useNavigate } from 'react-router-dom';
 
 function Basket() { 
   const store = useStore();
+  const navigate = useNavigate();  
   const lang = store.actions.lang; // языковые настройки берем из хранилища
   const langSettings = {
       Delete:lang.getPhrase('Delete'),
@@ -20,7 +22,7 @@ function Basket() {
     list: state.basket.list,
     amount: state.basket.amount,
     sum: state.basket.sum,
-  }));
+  })); 
 
 
 
@@ -29,12 +31,13 @@ function Basket() {
     removeFromBasket: useCallback(_id => store.actions.basket.removeFromBasket(_id), [store]),
     // Закрытие любой модалки
     closeModal: useCallback(() => store.actions.modals.close(), [store]),
+    onProductDetail: useCallback(id => navigate(`/product/${id}`)), // Переход в карточку товара
   };
 
   const renders = {
     itemBasket: useCallback(
       item => {
-        return <ItemBasket item={item} onRemove={callbacks.removeFromBasket} langSettings={langSettings}/>;
+        return <ItemBasket item={item} onRemove={callbacks.removeFromBasket} langSettings={langSettings} onProduct={callbacks.onProductDetail} />;
       },
       [callbacks.removeFromBasket],
     ),

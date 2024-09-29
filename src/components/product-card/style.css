@@ -21,13 +21,13 @@
 
 .ProductCard-param {
   font-size: 16px;
+  line-height: 18px;
+} 
+
+.ProductCard-price {
+  font-size: 18px;
   font-weight: 700;
   line-height: 18px;
-}
-
-.ProductCard-home{
-  color: #0888e5;
-  text-decoration: underline;
-  font-size: 18px;
-}
+  font-weight: bold;
+} 
 
