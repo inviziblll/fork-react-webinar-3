@@ -176,6 +176,7 @@ body {
 .ItemBasket-title {
   width: 100%;
   padding: 20px 10px;
+  cursor: pointer;
 }
 
 .ItemBasket-title:hover {
