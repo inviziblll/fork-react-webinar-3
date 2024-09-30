@@ -54,6 +54,28 @@ body {
   box-shadow: 0 0 15px 5px #0000003b;
 }
 
+.Lang {
+  display: flex;
+  align-items: center;
+  padding: 20px 20px 10px;
+  border: none;
+}
+
+.Lang-active {
+  background-color: #8ba1b1;
+  color:white;
+}
+
+.Lang button {
+  font-size: 16px;
+  border: 1px solid #746b6b;
+  margin: 5px;
+  border-radius: 5px;
+  width: 50px;
+}
+
+
+
 .Head {
   height: 80px;
   background: #f5f5f5;
@@ -88,10 +110,17 @@ body {
 
 
 
+.MenuMain-home {
+  color: #0888e5;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+
 /* Контрол с общими действиями */
 .BasketTool {
   display: flex;
-  /*justify-content: flex-end;*/
   justify-content: space-between;
   padding: 20px;
   font-size: 18px;
@@ -102,19 +131,9 @@ body {
     unicode-bidi: isolate;
 }
 
-.BasketTool-label {
-
-}
-
 .BasketTool-total {
   font-weight: bold;
   margin: 0 20px;
-}
-
-.BasketTool-home {
-  color: #0888e5;
-  text-decoration: underline;
-  cursor: pointer;
 }
 
 

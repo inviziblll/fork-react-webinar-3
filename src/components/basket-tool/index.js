@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
 import { useNavigate } from 'react-router-dom';
 import { numberFormat, plural } from '../../utils';
+import MenuMain from '../menu-main';
 import './style.css';
 
 function BasketTool({ sum, amount, onOpen, langSettings }) {
@@ -11,7 +12,6 @@ function BasketTool({ sum, amount, onOpen, langSettings }) {
   const navigate = useNavigate();
 
   const callbacks = {
-    onAddToBasket: e => onAdd(product._id), // Добавление в корзину 
     onHome: useCallback( () => { // Возвращение на главную страницу
         navigate('/');
     },[]),
@@ -19,7 +19,7 @@ function BasketTool({ sum, amount, onOpen, langSettings }) {
   
   return (
     <div className={cn()}>
-      <span className={cn('home')} onClick={callbacks.onHome}>{langSettings.MainPage}</span> 
+      <MenuMain langSettings={langSettings}/>
       <div className='BasketTool-content'>
         <span className={cn('label')}>{langSettings.CartHas}:</span>
         <span className={cn('total')}>

@@ -1,30 +1,22 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
+import Lang from '../lang';
+import { cn as bem } from '@bem-react/classname';
 import './style.css';
 
-function Head({ title, onLangChange, lang}) {
-  
-	const active = (btnLang) =>{
-		if(lang === btnLang){
-			return 'Lang-active';
-		}
-	};
-
+function Head({ title, onLangChange, lang }) {
+    const cn = bem('Head');
+	
 	return (
-	    <div className="Head">
+	    <div className={cn()}>
 	      	<h1>{title}</h1>
-	      	<div className='Lang'>
-	            <button className={active('en')} onClick={() => onLangChange('en')}>En</button>
-	            <button className={active('ru')} onClick={() => onLangChange('ru')}>Ru</button>
-	        </div>
-
+	        <Lang onLangChange={onLangChange} lang={lang}/>
 	    </div>
 	);
 }
 
 Head.propTypes = {
-  title: PropTypes.node,
-  onLangChange:PropTypes.func,
+  title: PropTypes.node
 };
 
 export default memo(Head);

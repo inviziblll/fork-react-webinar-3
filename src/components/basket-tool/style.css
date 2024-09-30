@@ -1,7 +1,6 @@
 /* Контрол с общими действиями */
 .BasketTool {
   display: flex;
-  /*justify-content: flex-end;*/
   justify-content: space-between;
   padding: 20px;
   font-size: 18px;
@@ -12,18 +11,8 @@
     unicode-bidi: isolate;
 }
 
-.BasketTool-label {
-
-}
-
 .BasketTool-total {
   font-weight: bold;
   margin: 0 20px;
-}
-
-.BasketTool-home {
-  color: #0888e5;
-  text-decoration: underline;
-  cursor: pointer;
 }
 

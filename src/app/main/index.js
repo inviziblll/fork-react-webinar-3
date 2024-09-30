@@ -58,8 +58,6 @@ function Main() {
 
   };
 
-  console.log(langSettings);
-
   const renders = {
     item: useCallback(
       item => {

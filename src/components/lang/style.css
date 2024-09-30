@@ -1,0 +1,21 @@
+.Lang {
+  display: flex;
+  align-items: center;
+  padding: 20px 20px 10px;
+  border: none;
+}
+
+.Lang-active {
+  background-color: #8ba1b1;
+  color:white;
+}
+
+.Lang button {
+  font-size: 16px;
+  border: 1px solid #746b6b;
+  margin: 5px;
+  border-radius: 5px;
+  width: 50px;
+}
+
+
