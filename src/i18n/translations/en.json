@@ -11,8 +11,25 @@
   "basket.delete": "Delete",
   "article.add": "Add",
   "filter.reset": "Reset",
+  "loading": "Loading",
   "basket.articles": {
     "one": "article",
     "other": "articles"
-  }
+  },
+  "user.authorization": "Authorization",
+  "user.error": "Authorization error",
+  "user.logout": "Logout",
+  "user.loggedout": "You have logged out",
+  "user.logouterror": "Failed to log out",
+  "user.password": "Password",
+  "user.login": "Login",
+  "user.heading": "Login",
+  "user.signin": "Signin",
+  "user.logged": "You are logged into your account",
+  "profile.heading": "Profile",
+  "profile.email": "Email",
+  "profile.name": "Name",
+  "profile.phone": "Phone",
+  "profile.error": "Error loading profile",
+  "profile.notfound": "Incorrect data"
 }

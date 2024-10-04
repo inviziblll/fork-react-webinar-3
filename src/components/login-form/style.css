@@ -1,0 +1,32 @@
+.LoginForm {
+    display: flex;
+    flex-direction: column;
+    padding: 34px 20px;
+    gap: 20px;
+}
+
+.LoginForm-input {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+.LoginForm-heading {
+    font-family: Arial;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 26px;
+}
+
+.LoginForm-send {
+    width: 50px;
+}
+
+.LoginForm-error {
+    font-family: Arial;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #FF0000;
+    margin: 0;
+}

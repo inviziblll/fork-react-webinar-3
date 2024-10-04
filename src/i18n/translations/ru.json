@@ -1,6 +1,6 @@
 {
   "title": "Магазин",
-  "menu.main": "Главная",
+  "menu.main": "Главная", 
   "basket.title": "Корзина",
   "basket.open": "Перейти",
   "basket.close": "Закрыть",
@@ -11,10 +11,28 @@
   "basket.delete": "Удалить",
   "article.add": "Добавить",
   "filter.reset": "Сбросить",
+  "loading": "Загрузка",
   "basket.articles": {
     "one": "товар",
     "few": "товара",
     "many": "товаров",
     "other": "товара"
-  }
+  },
+  "user.authorization": "Авторизация",
+  "user.error": "Ошибка авторизации",
+  "user.login": "Логин",
+  "user.logout": "Выход",
+  "user.loggedout": "Вы разлогинились",
+  "user.logouterror": "Не удалось выйти",
+  "user.password": "Пароль",
+  "user.login": "Логин",
+  "user.heading": "Вход",
+  "user.signin": "Войти",
+  "user.logged": "Вы вошли в аккаунт",
+  "profile.email": "Email",
+  "profile.heading": "Профиль",
+  "profile.name": "Имя",
+  "profile.phone": "Телефон",
+  "profile.error": "Ошибка при загрузки профиля",
+  "profile.notfound": "Вы ввели не верные данные"
 }

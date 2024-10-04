@@ -1,0 +1,31 @@
+.ProfileBlock {
+    margin: 34px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ProfileBlock-heading {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 26px;
+    font-family: Arial;
+    margin-bottom: 10px;
+}
+
+.ProfileBlock-field {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.ProfileBlock-label {
+    font-family: Arial;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+.ProfileBlock-param {
+    font-weight: 700;
+}
