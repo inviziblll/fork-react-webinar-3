@@ -15,35 +15,29 @@ function Login({t}) {
     const navigate = useNavigate();
     const [error, setError] = useState('');
 
-
     const handleForm = async (login, password) => {
         try {
-            await store.actions.user.sign(login, password, t); 
+           await store.actions.user.sign(login, password, t, handleLogin); 
         } 
         catch (e) {
-            setError(e.message);
+            consol.log(e.message);
         } 
     };
 
-    const select = useSelector(state => ({
-        auth: state.user.auth,
-        error: state.user.error,
-    })); 
+    const handleLogin = function(signSuccess = false, signError = false){
+        
+        if(signSuccess){
+            handleSuccess(); // перенаправляем на страницу профиля
+        }
 
+        if(signError){
+            setError(signError); // выставляем ошибку
+        }
+    }
 
     const handleSuccess = () => {
         navigate('/profile');
     };
-
-    useEffect(() => {
-        if (select.auth) {
-           handleSuccess();
-        }
-
-        if (select.error) {
-           setError(select.error);
-        }
-    }, [select.auth, select.error]);
 
     return (
         <PageLayout>

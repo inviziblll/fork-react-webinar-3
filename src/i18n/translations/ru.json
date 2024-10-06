@@ -34,5 +34,5 @@
   "profile.name": "Имя",
   "profile.phone": "Телефон",
   "profile.error": "Ошибка при загрузки профиля",
-  "profile.notfound": "Вы ввели не верные данные"
+  "incorrect.request": "Не корректный запрос"
 }

@@ -24,8 +24,8 @@ function LoginForm({handleForm, t, error}) {
         <label htmlFor="password">{t('user.password')}</label>
         <input type="password" name="password" id="password" className={cn('password')} value={password} onChange={e => setPassword(e.target.value)} required />
       </div>
-      <button type="submit" className={cn('send')}>{t('user.signin')}</button>
       {error ? <span className={cn('error')}>{error}</span> : ''}
+      <button type="submit" className={cn('send')}>{t('user.signin')}</button>
     </form>
   );
 }

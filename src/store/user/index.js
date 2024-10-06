@@ -72,55 +72,67 @@ class UserState extends StoreModule {
 
   }
 
-  async sign(login, password, t) {
+  responseError(error) { 
+    let result = error.data.issues;
+    result = result.map((item) => {
+        return item.message
+    });
+    result = result.join(', ');
+    return result;
+  }
+
+
+  async sign(login, password, t, handleLogin) { 
     
     this.setState({
       auth: false,
       waiting: true,
+      error: '',
     });
 
     try {
-       
+
         const response = await fetch('/api/v1/users/sign', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
             body: JSON.stringify({ login, password })
         });
 
-        const data = await response.json();
-
-        if (response.ok) {     
-            this.setState({
-                waiting: false,
-                error: '',
-                auth: true
-            }, 
-            t('user.authorization'));
-            localStorage.setItem('token', data.result.token);
-        } 
-        else {
-
-            this.setState({
-              auth: false,
-              waiting: false,
-              error: data.error.message
-            }, 
-            data.error.message);
+        if (response.status == 404) {
+          throw new Error(t('incorrect.request')); 
         }
 
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(this.responseError(data.error)); // ловим ошибку и обрабатываем ее в отдельном методе
+        }
+       
+        localStorage.setItem('token', data.result.token);
+        this.setState(
+          {
+            auth: true,
+            waiting: false,
+            error: ''
+          }, t('user.logged'), 
+        );
+        
+        handleLogin(true, false); 
     } 
     catch (error) {
-        
-        this.setState({
-          auth: false,
-          waiting: false,
-          error: error.message
-        }, 
-        t('user.error'));
+      this.setState({
+        auth: false,
+        waiting: false,
+        error: error.message
+      }, error.message);
 
+      handleLogin(false, error.message); 
     }
-
   }
+
 
 }
 
