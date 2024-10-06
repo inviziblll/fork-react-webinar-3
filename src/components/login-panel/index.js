@@ -48,7 +48,7 @@ function LoginPanel({t}) {
   else{
       return (
         <div className={cn()}>
-          <button onClick={handleLogin}>{t('user.login')}</button>
+          <button onClick={handleLogin}>{t('user.panelbutton')}</button>
         </div>
       );
   }

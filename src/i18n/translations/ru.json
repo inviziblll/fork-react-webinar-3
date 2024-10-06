@@ -20,7 +20,7 @@
   },
   "user.authorization": "Авторизация",
   "user.error": "Ошибка авторизации",
-  "user.login": "Логин",
+  "user.panelbutton": "Вход",
   "user.logout": "Выход",
   "user.loggedout": "Вы разлогинились",
   "user.logouterror": "Не удалось выйти",

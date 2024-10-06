@@ -6,6 +6,8 @@
   max-width: 1024px;
   margin: auto;
   background-color: white;
+  min-height: 41px;
+  border-bottom: 1px solid #dcdcdc;
 }
 
 .LoginPanel-profile {

@@ -18,6 +18,7 @@
   },
   "user.authorization": "Authorization",
   "user.error": "Authorization error",
+  "user.panelbutton": "Signin",
   "user.logout": "Logout",
   "user.loggedout": "You have logged out",
   "user.logouterror": "Failed to log out",
