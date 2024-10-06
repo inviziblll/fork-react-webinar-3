@@ -8,7 +8,6 @@ import Basket from './basket';
 import Article from './article';
 import Login from './login';
 import Profile from './profile';
-import LoginPanel from '../components/login-panel';
 
 /**
  * Приложение
@@ -21,7 +20,6 @@ function App() {
 
   return ( 
     <>
-      <LoginPanel  t={t} />
       <Routes>
         <Route path={''} element={<Main />} />
         <Route path={'/articles/:id'} element={<Article />} />

@@ -8,12 +8,13 @@ import Head from '../../components/head';
 import CatalogFilter from '../../containers/catalog-filter';
 import CatalogList from '../../containers/catalog-list';
 import LocaleSelect from '../../containers/locale-select';
+import LoginPanel from '../../containers/login-panel';
 
 /**
  * Главная страница - первичная загрузка каталога
  */
 function Main() {
-  const store = useStore();
+  const store = useStore(); 
 
   useInit( () => {
       store.actions.catalog.initParams(); 
@@ -24,6 +25,7 @@ function Main() {
 
   return (
     <PageLayout>
+      <LoginPanel t={t} />
       <Head title={t('title')}>
         <LocaleSelect />
       </Head>

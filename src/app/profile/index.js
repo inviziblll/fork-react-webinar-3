@@ -9,6 +9,7 @@ import LocaleSelect from '../../containers/locale-select';
 import ProfileBlock from '../../components/profile-block';
 import { cn as bem } from '@bem-react/classname';
 import useSelector from '../../hooks/use-selector';
+import LoginPanel from '../../containers/login-panel';
 
 function Profile({t}) {
 
@@ -38,9 +39,9 @@ function Profile({t}) {
         navigate('/');
     }
 
-
     return (
-        <PageLayout>            
+        <PageLayout> 
+            <LoginPanel t={t} />
             <Head title={t('title')}>
                 <LocaleSelect />
             </Head>

@@ -1,10 +1,5 @@
 import { memo, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { Link, useNavigate } from 'react-router-dom';
 import { cn as bem } from '@bem-react/classname';
-import useInit from '../../hooks/use-init';
-import useStore from '../../hooks/use-store';
-import useSelector from '../../hooks/use-selector';
 import './style.css';
 
 function ProfileBlock({t, profile}) {
