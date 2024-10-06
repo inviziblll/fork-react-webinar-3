@@ -1,33 +1,35 @@
 import { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import useStore from '../../hooks/use-store';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import useSelector from '../../hooks/use-selector';
 import { cn as bem } from '@bem-react/classname';
 import LoginBar from '../../components/login-bar';
 
 function LoginPanel({t}) {
   
+  const store = useStore(); 
+
   const navigate = useNavigate();
-  const store = useStore();   
+  const location = useLocation();
 
   useEffect(() => {
         const getProfile = async () => {
-            await store.actions.user.profile(t);
+            await store.actions.profile.fields(t);
         };
         getProfile();
-  }, [store.actions.user]); 
+  }, [store.actions.profile]); 
 
   const profile = useSelector(state => ({
-        name:  state.user.name,
-        email: state.user.email,
-        phone: state.user.phone,
-        error: state.user.error,
+        name:  state.profile.name,
+        email: state.profile.email,
+        phone: state.profile.phone,
+        error: state.profile.error,
   })); 
 
   const handleLogout = async () => {
         await store.actions.user.logout(t);
-        navigate('/login');
+        await store.actions.profile.logout(t);
         window.location.reload();
   };
 

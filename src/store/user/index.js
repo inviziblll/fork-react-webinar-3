@@ -6,45 +6,8 @@ class UserState extends StoreModule {
     return {
         waiting: false,
         error: '',
-        name:false,
-        email:false,
-        phone:false,
         auth:false
     };
-  }
-
-  async profile(t) {
-
-    this.setState({
-      name:false,
-      email:false,
-      phone:false,
-    });
-    
-    try {
-      const token = localStorage.getItem('token');
-      const response = await fetch('/api/v1/users/self?fields=*', {
-          headers: { 'X-Token': token }
-      });
-      const data = await response.json();
-      this.setState(
-        {
-          name: data.result.profile.name,
-          email: data.result.email,
-          phone: data.result.profile.phone,
-          waiting: false,
-        }, 
-        t('profile.heading'),
-      );
-    } 
-    catch (e) {
-      this.setState({
-        name:false,
-        email:false,
-        phone:false,
-      }, 
-      e.message);
-    }
   }
 
   async logout(t) {
@@ -57,9 +20,8 @@ class UserState extends StoreModule {
       });
 
       this.setState({
-        name:false,
-        email:false,
-        phone:false,
+        waiting: false,
+        error:'',
         auth:false
       },
       t('user.loggedout'));

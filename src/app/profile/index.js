@@ -21,22 +21,21 @@ function Profile({t}) {
 
     useEffect(() => {
         const getProfile = async () => {
-            await store.actions.user.profile(t);
+            await store.actions.profile.fields(t);
         };
         getProfile();
-    }, [store.actions.user]);
+    }, [store.actions.profile]);
 
     const profile = useSelector(state => ({
-        name: state.user.name,
-        email: state.user.email,
-        phone: state.user.phone,
-        error:state.user.error
+        name: state.profile.name,
+        email: state.profile.email,
+        phone: state.profile.phone,
+        error:state.profile.error
     })); 
 
     const token = localStorage.getItem('token');
-
     if(!token){
-        navigate('/');
+        navigate('/login');
     }
 
     return (

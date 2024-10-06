@@ -4,46 +4,22 @@ import Head from '../../components/head';
 import LoginForm from '../../components/login-form';
 import { cn as bem } from '@bem-react/classname';
 import useStore from '../../hooks/use-store';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
 import LocaleSelect from '../../containers/locale-select';
 import Navigation from '../../containers/navigation';
 import useSelector from '../../hooks/use-selector';
 import LoginPanel from '../../containers/login-panel';
 
-function Login({t}) {
+function Login({t, error, handleLoginForm}) {
 
-    const store = useStore();
-    const navigate = useNavigate();
-    const [error, setError] = useState('');
-    const location = useLocation();
-    const handleForm = async (login, password) => {
+    const handleForm = (login, password) => {
         try {
-           await store.actions.user.sign(login, password, t, handleLogin); 
+           handleLoginForm(login, password); 
         } 
         catch (e) {
-            consol.log(e.message);
+            console.log(e.message);
         } 
-    };
-
-    const handleLogin = function(signSuccess = false, signError = false){
-        
-        if(signSuccess){
-            handleSuccess(); 
-        }
-
-        if(signError){
-            setError(signError); // выставляем ошибку
-        }
     }
-
-    const handleSuccess = () => { // редирект на страницу с которой пользователь зашел
-        let previouspage = '/profile';
-        if(location.state !== null){
-            previouspage = location.state.previouspage;
-        }
-        navigate(previouspage, { replace: true });
-    };
-
+   
     return (
         <PageLayout>
             <LoginPanel t={t} />
