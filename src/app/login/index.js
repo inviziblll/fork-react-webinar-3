@@ -15,9 +15,7 @@ function Login({t}) {
     const store = useStore();
     const navigate = useNavigate();
     const [error, setError] = useState('');
-
     const location = useLocation();
-
     const handleForm = async (login, password) => {
         try {
            await store.actions.user.sign(login, password, t, handleLogin); 
@@ -30,7 +28,7 @@ function Login({t}) {
     const handleLogin = function(signSuccess = false, signError = false){
         
         if(signSuccess){
-            handleSuccess(); // перенаправляем на страницу профиля
+            handleSuccess(); 
         }
 
         if(signError){
@@ -38,8 +36,12 @@ function Login({t}) {
         }
     }
 
-    const handleSuccess = () => {
-        navigate('/profile');
+    const handleSuccess = () => { // редирект на страницу с которой пользователь зашел
+        let previouspage = '/profile';
+        if(location.state !== null){
+            previouspage = location.state.previouspage;
+        }
+        navigate(previouspage, { replace: true });
     };
 
     return (

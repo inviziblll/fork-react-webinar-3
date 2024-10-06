@@ -16,7 +16,7 @@ function LoginPanel({t}) {
             await store.actions.user.profile(t);
         };
         getProfile();
-  }, [store.actions.user]);
+  }, [store.actions.user]); 
 
   const profile = useSelector(state => ({
         name:  state.user.name,
@@ -31,8 +31,8 @@ function LoginPanel({t}) {
         window.location.reload();
   };
 
-  const handleLogin = async () => {
-        navigate('/login'); 
+  const handleLogin = async () => { // путь из браузерной строки со всеми параметрами 
+      navigate('/login', {state: {previouspage: window.location.pathname + window.location.search}});
   };
 
   return (
