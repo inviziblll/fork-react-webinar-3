@@ -22,5 +22,15 @@
   "auth.password": "Пароль",
   "auth.signIn": "Войти",
   "session.signIn": "Вход",
-  "session.signOut": "Выход"
+  "session.signOut": "Выход",
+  "comment.deleted": "Комментарий удалён",
+  "comment.reply": "Ответить",
+  "comment.form.title":"Комментарии",
+  "comment.form.placeholder":"Текст",
+  "comment.form.send":"Отправить",
+  "comment.form.cancel":"Отмена",
+  "notauth.cancel": "Отмена",
+  "notauth.comment": ", чтобы иметь возможность комментировать",
+  "notauth.reply": ", чтобы иметь возможность отвечать",
+  "notauth.login": "Войдите"
 }

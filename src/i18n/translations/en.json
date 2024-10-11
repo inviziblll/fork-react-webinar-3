@@ -20,5 +20,15 @@
   "auth.password": "Password",
   "auth.signIn": "Sign in",
   "session.signIn": "Sign In",
-  "session.signOut": "Sign Out"
+  "session.signOut": "Sign Out",
+  "comment.deleted": "Comment deleted",
+  "comment.reply": "Answer",
+  "comment.form.title":"Comments",
+  "comment.form.placeholder":"Text",
+  "comment.form.send":"Send",
+  "comment.form.cancel":"Cancel",
+  "notauth.cancel": "Cancel",
+  "notauth.comment": "leave a comment",
+  "notauth.reply": "leave a reply",
+  "notauth.login": "Sign in"
 }

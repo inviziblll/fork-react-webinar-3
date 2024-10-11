@@ -1,0 +1,11 @@
+.Comments {
+  list-style: none;
+  padding-left: 28px;
+}
+
+
+.Comments-bottom {
+  list-style: none;
+  padding-left: 28px;
+  padding-bottom: 10px;
+}

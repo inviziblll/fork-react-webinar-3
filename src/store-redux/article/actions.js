@@ -5,6 +5,7 @@ export default {
    * @return {Function}
    */
   load: id => {
+    // console.log('load');
     return async (dispatch, getState, services) => {
       // Сброс текущего товара и установка признака ожидания загрузки
       dispatch({ type: 'article/load-start' });
@@ -13,6 +14,9 @@ export default {
         const res = await services.api.request({
           url: `/api/v1/articles/${id}?fields=*,madeIn(title,code),category(title)`,
         });
+
+        // console.log(res.data.result);
+
         // Товар загружен успешно
         dispatch({ type: 'article/load-success', payload: { data: res.data.result } });
       } catch (e) {

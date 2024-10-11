@@ -1,0 +1,33 @@
+.CommentAuth {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.CommentAuth-text {
+  font-size: 16px;
+}
+
+.CommentAuth-button {
+  border: none;
+  margin-left: 2px;
+  font-size: inherit;
+  background-color: transparent;
+  color: #666565;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.CommentAuth-button:hover {
+  color: black;
+}
+
+
+.CommentAuth-link {
+  color: #0086e8;
+}
+
+
+.CommentAuth-link:hover {
+  color: black;
+}
