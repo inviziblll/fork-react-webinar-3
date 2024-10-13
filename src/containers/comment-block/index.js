@@ -7,7 +7,7 @@ import listToTree from "../../utils/list-to-tree";
 import treeToList from "../../utils/tree-to-list";
 import Comments from '../../components/comments'; 
 
-function CommentBlock({ comments, addComment, auth, articleId, t }) { 
+function CommentBlock({ comments, count, addComment, auth, articleId, t , user}) { 
 
 
   const callbacks = {
@@ -23,7 +23,8 @@ function CommentBlock({ comments, addComment, auth, articleId, t }) {
             _type: type, 
             _id: commentID, 
           },
-          text
+          text,
+          user:user
       }
       addComment(params);
     }
@@ -61,6 +62,8 @@ function CommentBlock({ comments, addComment, auth, articleId, t }) {
           t={t} 
           parentId={articleId}
           child={false}
+          count={count}
+          user={user}
         />
       </>
   );

@@ -8,6 +8,7 @@
   margin: 10px 0;
   padding-right: 20px;
   font-size: 14px;
+  overflow-wrap: break-word;
 }
 
 .CommentCard-author {
@@ -32,3 +33,6 @@
   text-decoration: underline;
 }
 
+.CommentCard-authorized-author {
+  color: #666666;
+}

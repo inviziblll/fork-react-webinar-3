@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
 import './style.css';
   
-function CommentForm({ onAdd, onCancel, parentId, t , comment = false}) {   
+function CommentForm({ onAdd, onCancel, parentId, t , formTitle, comment = false, type}) {   
   
   const cn = bem('CommentForm');
   
@@ -11,10 +11,9 @@ function CommentForm({ onAdd, onCancel, parentId, t , comment = false}) {
 
   const addComment = (e) => {
     e.preventDefault();
-    addComment
-    
+   
     if (text.trim() !=='') {
-        onAdd(text, comment);
+        onAdd(text, comment); 
         setText('');
     }
   };
@@ -22,7 +21,7 @@ function CommentForm({ onAdd, onCancel, parentId, t , comment = false}) {
   return (
     <form className={cn()} onSubmit={e => addComment(e)}>
       
-      <h3 className={cn('heading')}>{t('comment.form.title')}</h3>
+      <h3 className={cn('heading')}>{formTitle}</h3>
       
       <textarea 
         className={cn('textarea')} 
@@ -33,7 +32,10 @@ function CommentForm({ onAdd, onCancel, parentId, t , comment = false}) {
 
       <div className={cn('buttons')}>
         <button>{t('comment.form.send')}</button>
-        <button onClick={(e) => onCancel(parentId)}>{t('comment.form.cancel')}</button>
+        {type == 'comment'
+          ? <button onClick={(e) => onCancel(parentId)}>{t('comment.form.cancel')}</button>
+          : ''}
+        
       </div>
 
     </form>

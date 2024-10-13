@@ -25,19 +25,20 @@ export default {
   addComment: (commentParams) => {
 
     return async (dispatch, getState, services) => {
-      
-      dispatch({ type: 'comments/create-start' });
-      
+     
       try {
+
         const res = await services.api.request({
           url: '/api/v1/comments',
           method: 'POST',
           body: JSON.stringify(commentParams),
-        });
+        }); 
+        const payload = {...res.data.result, author: { 
+          profile: { name: commentParams.user.profile.name },
+          _id:commentParams.user._id
+        }};
+        dispatch({ type: 'comments/create-success', payload: payload});
 
-        console.log(res);
-
-        dispatch({ type: 'comments/create-success', payload: { data: res.data.result } });
       } 
       catch (e) {
         dispatch({ type: 'comments/create-error' });

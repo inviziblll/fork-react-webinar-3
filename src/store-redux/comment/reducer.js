@@ -3,6 +3,7 @@ export const initialState = {
   items: [],
   waiting: false, // признак ожидания загрузки 
   count: 0,
+  error: false
 };
 
 function reducer(state = initialState, action) {
@@ -15,9 +16,6 @@ function reducer(state = initialState, action) {
 
     case 'comments/load-success':{
           const { items, count } = action.payload;
-
-          // console.log('comments/load-success');
-          // console.log(items);
           return { ...state, items, count, waiting: false }; 
     }
 
@@ -25,9 +23,14 @@ function reducer(state = initialState, action) {
           return { ...state, items: [], waiting: false }; //@todo текст ошибки сохранять?
     }
 
-    case 'comments/add-success':{ 
-          const items = [...state.items, action.payload];
-          return { ...state, items, count:state.count + 1, waiting: false, error: '' };
+    case 'comments/create-success': {
+        const count = state.count + 1;
+        const items = [...state.items, {...action.payload}]; 
+        return { ...state, items, count, waiting: false, error: false };
+    }
+
+    case 'comments/create-error':{
+        return { ...state, waiting: false, error: 'Ошибка при создании комментария' };
     }
     
     default:

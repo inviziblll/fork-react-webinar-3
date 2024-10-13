@@ -38,18 +38,21 @@ function Article() {
       article: state.article.data,
       waiting: state.article.waiting,
       comments: state.comment.items,
+      count: state.comment.count,
       waitingComments: state.comment.waiting,
+
     }),
     shallowequal,
   ); // Нужно указать функцию для сравнения свойства объекта, так как хуком вернули объект
 
 
-  const {auth, userName} = useSelector(
+  const {auth, user} = useSelector( 
     state => ({
-      auth: state.session.exists
+      auth: state.session.exists,
+      user: state.session.user
     }),
-  );
-  
+  ); 
+ 
   const { t } = useTranslate();
 
   const callbacks = {
@@ -59,10 +62,9 @@ function Article() {
     // Добавление нового комментария
     addComment: useCallback((data) => {
       dispatch(commentActions.addComment(data));
-      dispatch(commentActions.load(params.id)); // загружаем заново список комментариев 
     }, 
     [dispatch, params.id]),
-  };
+  }; 
 
     
   return (
@@ -83,10 +85,12 @@ function Article() {
       <Spinner active={select.waitingComments}>
           <CommentBlock 
             comments={select.comments} 
+            count={select.count}
             addComment={callbacks.addComment} 
             auth={auth} 
             articleId={params.id} 
             t={t}
+            user={user}
           />
       </Spinner>
 

@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo, useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
 import CommentCard from '../comment-card';
@@ -6,7 +6,7 @@ import CommentForm from '../comment-form';
 import CommentAuth from '../comment-auth';
 import './style.css';
 
-function Comments({comments, onAdd, parentId, t, auth, child}) { 
+function Comments({comments, count, onAdd, parentId, t, auth, child, user}) {  
     
     const cn = bem('Comments');
 
@@ -23,14 +23,15 @@ function Comments({comments, onAdd, parentId, t, auth, child}) {
         setBottomForm(true);
     };
 
-    const handleOnAdd = (text, comment) => {         
-        setOpenForm(null);
-        setBottomForm(true); 
-        onAdd(text, comment);
-    };
+    const formBlock = useRef(false); // ссылка на блок формы под комментарием
+    useEffect(() => {
+        if (openForm && formBlock.current) {
+                formBlock.current.scrollIntoView({behavior: 'smooth', block: 'center'}); // скроллинг блока формы
+        }
+    }, [openForm]);
 
 
-    const renderChildrenComments = function (comments, commentId){ // дочерние комментарии 
+    const renderChildrenComments = function (comments, commentId, level, formBlock){ // дочерние комментарии 
 
         const childrenComments = comments.filter((item) => ( 
             item.parent._id === commentId
@@ -38,62 +39,97 @@ function Comments({comments, onAdd, parentId, t, auth, child}) {
 
         if(childrenComments.length>0){
 
-            const result = childrenComments.map(comment => (
+            const mimLevel = 2;
+            const maxLevel = 7;
+
+            const makeOffset =  (commentLevel) => { // делаем дополнительный отступ для вложенных комментариев 
+                // ограничеваем отступ при большой вложенности
+                let offset = (commentLevel <= maxLevel && commentLevel >= mimLevel)? true : false;
+                return offset;
+            }        
+
+            let commentLevel = level;
+                level = level + 1; // добавляем вложенность для отступа дочернего комментария
+
+            const result = childrenComments.map((comment) => (
+
                     <li key={comment._id}>
+
                         <CommentCard  
                             comment={comment}  
-                            onAdd={handleOnAdd} 
-                            onCancel={handleCancel} 
+                             onCancel={handleCancel} 
                             auth={auth} 
                             t={t} 
                             onOpen={id => handleOpen(id)}
-
+                            user={user}
                         />
+                        
+                        {renderChildrenComments(comments, comment._id, level, formBlock)}
+
                         {openForm === comment._id && 
                             (
-                            <>{renderFormBlock(comment)}</>
+                            <>{renderFormBlock(comment, formBlock)}</>
                             )
                         }
-                        {renderChildrenComments(comments, comment._id)}
                     </li>
             ));
-            return (<ul className={cn()}>{result}</ul>);
+
+            if(makeOffset(commentLevel) === true){
+                return (
+                    <ul className='Comments-list Comments-offset'>{result}</ul>
+                );
+            }
+            else{
+                if(commentLevel>maxLevel){                    
+                    return (
+                        <ul className='Comments-offset-reset'>{result}</ul>
+                    );
+                }
+                else{
+                    return (
+                        <ul className={cn('list')}>{result}</ul>
+                    );
+                }
+            }
+            
         }
 
     }
 
     
-    const renderRootComments = function(comments){
+    const renderRootComments = function(comments, formBlock){
             
             // комментарии у которых нет родителя
             const rootComments = comments.filter((item) => ( 
                     Object.keys(item.parent).length === 0
-            ));
+            )); 
 
+            const level = 1; // уровень вложенности 
             const result = rootComments.map((comment) => ( // вывод родительских комментариев
                     
                     <li key={comment._id}>
                         <CommentCard  
                             comment={comment}  
-                            onAdd={handleOnAdd} 
                             onCancel={handleCancel} 
                             auth={auth} 
                             t={t} 
                             onOpen={id => handleOpen(id)}
+                            user={user}
 
                         />
+                        
+                        {renderChildrenComments(comments, comment._id, level, formBlock)} 
+
                         {openForm === comment._id && 
                             (
-                            <>{renderFormBlock(comment)}</>
+                            <>{renderFormBlock(comment, formBlock)}</>
                             )
                         }
-
-                        {renderChildrenComments(comments, comment._id)}
 
                     </li>
             ));
 
-            return (<ul className={cn()}>{result}</ul>);
+            return (<ul className={cn('list')}>{result}</ul>);
     }
 
     const renderBottomForm = () => {
@@ -110,35 +146,35 @@ function Comments({comments, onAdd, parentId, t, auth, child}) {
             
             if(bottomForm === true){
                 return(
-                    <div className='Comments-bottom'>
-                        <CommentForm onAdd={onAdd} t={t} parentId={parentId} onCancel={handleCancel} />
+                    <div className='Comments-bottom' ref={formBlock}>
+                        <CommentForm onAdd={onAdd} t={t} 
+                        parentId={parentId} onCancel={handleCancel} 
+                        type="bottom"
+                        formTitle = {t('comment.form.newcomment')}/>
                     </div>
                 );
             }
-            else{
-                return(
-                    <div className='Comments-bottom'>
-                        <button className={cn('reply')} onClick={(e) => { setBottomForm(true)}}>
-                            {t('comment.reply')}
-                        </button> 
-                    </div>
-                );
-
-            }
+            
         }
     };
 
 
-    const renderFormBlock = (comment) => { // вывод формы в кнопке комментария
+    const renderFormBlock = function (comment, formBlock) { // вывод формы в кнопке комментария
+        
         if(auth){
+                
                 return(
-                    <CommentForm
-                        onAdd={handleOnAdd}
-                        t={t}
-                        parentId={parentId}
-                        onCancel={handleCancel}
-                        comment={comment}
-                    />
+                    <div ref={formBlock}>
+                        <CommentForm
+                            onAdd={onAdd}
+                            t={t}
+                            parentId={parentId}
+                            onCancel={handleCancel}
+                            comment={comment}
+                            formTitle = {t('comment.form.newreply')}
+                            type="comment"
+                        />
+                    </div>
                 );
         }
 
@@ -149,10 +185,11 @@ function Comments({comments, onAdd, parentId, t, auth, child}) {
     };
 
     return (
-        <>
-            {renderRootComments(comments)}
+        <div className={cn()}>
+            <h2 className={cn('heading')}>{t('comment.heading')} ({count})</h2>
+            {renderRootComments(comments, formBlock)}
             {renderBottomForm()}
-        </>
+        </div>
     );
 }
 

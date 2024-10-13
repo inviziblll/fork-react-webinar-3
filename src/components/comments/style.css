@@ -1,11 +1,31 @@
 .Comments {
-  list-style: none;
-  padding-left: 28px;
+ 	padding: 0;
+  margin-top: 30px;
+  padding-bottom: 40px;
 }
 
+.Comments-list {
+    list-style: none;
+    margin: 0;
+}
 
 .Comments-bottom {
   list-style: none;
   padding-left: 28px;
-  padding-bottom: 10px;
+}
+
+.Comments-offset {
+   list-style: none;
+   padding-left: 28px;
+}
+
+.Comments-heading {
+  margin-left: 40px;
+  margin-bottom: 25px;
+}
+
+
+.Comments-offset-reset {
+   list-style: none;
+   padding-left: 0px !important;
 }
