@@ -41,6 +41,7 @@ class APIService {
       delete this.defaultHeaders[name];
     }
   }
+
 }
 
 export default APIService;

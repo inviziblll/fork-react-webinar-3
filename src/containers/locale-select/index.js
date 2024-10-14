@@ -16,7 +16,6 @@ function LocaleSelect() {
       [],
     ),
   };
-
   return <Select onChange={setLang} value={lang} options={options.lang} />;
 }
 

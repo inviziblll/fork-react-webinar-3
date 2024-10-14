@@ -26,12 +26,14 @@ function Article() {
   const dispatch = useDispatch();
   const params = useParams();
   
+
+  const { t, lang } = useTranslate();
+
   useInit(() => {
     //store.actions.article.load(params.id);
     dispatch(articleActions.load(params.id));
     dispatch(commentActions.load(params.id));
-  }, [params.id]);
-
+  }, [params.id, lang]); 
   
   const select = useSelectorRedux(
     state => ({
@@ -53,7 +55,7 @@ function Article() {
     }),
   ); 
  
-  const { t } = useTranslate();
+
 
   const callbacks = {
     // Добавление в корзину

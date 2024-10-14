@@ -5,7 +5,6 @@ export default {
    * @return {Function}
    */
   load: id => {
-    // console.log('load');
     return async (dispatch, getState, services) => {
       // Сброс текущего товара и установка признака ожидания загрузки
       dispatch({ type: 'article/load-start' });

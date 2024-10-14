@@ -23,6 +23,12 @@ function Comments({comments, count, onAdd, parentId, t, auth, child, user}) {
         setBottomForm(true);
     };
 
+    const handleAddComment = (text, comment) => {
+        onAdd(text, comment);
+        setOpenForm(null);
+        setBottomForm(true);
+    };
+
     const formBlock = useRef(false); // ссылка на блок формы под комментарием
     useEffect(() => {
         if (openForm && formBlock.current) {
@@ -138,7 +144,7 @@ function Comments({comments, count, onAdd, parentId, t, auth, child, user}) {
 
             if(auth === false){
                 return (
-                    <div className='Comments-bottom'> 
+                    <div className='Comments-bottom' ref={formBlock}> 
                         <CommentAuth onCancel={handleCancel}  t={t}/> 
                     </div>
                 );
@@ -147,7 +153,7 @@ function Comments({comments, count, onAdd, parentId, t, auth, child, user}) {
             if(bottomForm === true){
                 return(
                     <div className='Comments-bottom' ref={formBlock}>
-                        <CommentForm onAdd={onAdd} t={t} 
+                        <CommentForm onAdd={handleAddComment} t={t} 
                         parentId={parentId} onCancel={handleCancel} 
                         type="bottom"
                         formTitle = {t('comment.form.newcomment')}/>
@@ -166,7 +172,7 @@ function Comments({comments, count, onAdd, parentId, t, auth, child, user}) {
                 return(
                     <div ref={formBlock}>
                         <CommentForm
-                            onAdd={onAdd}
+                            onAdd={handleAddComment}
                             t={t}
                             parentId={parentId}
                             onCancel={handleCancel}
@@ -180,7 +186,7 @@ function Comments({comments, count, onAdd, parentId, t, auth, child, user}) {
 
         if(!auth){
             return  (
-                <div className={cn()}> <CommentAuth button={true}onCancel={handleCancel}  t={t}/>  </div>);
+                <div className={cn()} ref={formBlock}> <CommentAuth button={true}onCancel={handleCancel}  t={t}/>  </div>);
         }
     };
 

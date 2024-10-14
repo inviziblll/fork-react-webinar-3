@@ -1,6 +1,7 @@
 import APIService from './api';
 import Store from './store';
 import createStoreRedux from './store-redux';
+import I18nService from './i18n';
 
 class Services {
   constructor(config) {
@@ -38,6 +39,17 @@ class Services {
     }
     return this._redux;
   }
+
+  /**
+   * Сервис мультиязычности
+  */
+  get I18nService() {
+    if (!this._I18nService) {
+      this._I18nService = new I18nService(this);
+    }
+    return this._I18nService;
+  }
+  
 }
 
 export default Services;
